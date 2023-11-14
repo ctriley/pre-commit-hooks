@@ -26,7 +26,7 @@ class ClangTidyCmd(StaticAnalyzerCmd):
             print("stderr before substitution: ", self.stderr)
             self.stderr = re.sub(rb"[\d,]+ warning \S+\s+", b"", self.stderr)
             self.stderr = re.sub(rb"[\d,]+ warnings \S+\s+", b"", self.stderr)
-            self.stderr = re.sub(rb"Supressed [\d,]+ warnings [\d,]+ in non-user code, [\d]+ NOLINT). \S+\s+", b"", self.stderr)
+            self.stderr = re.sub(rb"Supressed [\d,]+ warnings [\d,]+ in non-user code, [\d]+ NOLINT\). \S+\s+", b"", self.stderr)
             self.stderr = re.sub(rb"Use -header-filter=\S+\s+", b"", self.stderr)
             print("stderr after substitution: ", self.stderr)
             if len(self.stderr) > 0 and "--fix-errors" in self.args:
