@@ -25,7 +25,7 @@ class ClangTidyCmd(StaticAnalyzerCmd):
             # Warnings generated aren't important.
             self.stderr = re.sub(rb"[\d,]+ warning \S+\s+", b"", self.stderr)
             self.stderr = re.sub(rb"[\d]+ warnings generated\S+\s+", b"", self.stderr)
-            self.stderr = re.sub(rb"Suppressed [0-9]+ warnings \([0-9]+ in non-user code, [0-9]+ NOLINT\)\.\s+", b"", self.stderr)
+            self.stderr = re.sub(rb"Suppressed [0-9]+ warnings \([0-9]+ in non-user code.*\s+", b"", self.stderr)
             self.stderr = re.sub(rb"Use -header-filter=\.\* to display errors from all non-system headers\. Use -system-headers to display errors from system headers as well\.\s+", b"", self.stderr)
             if len(self.stderr) > 0 and "--fix-errors" in self.args:
                 print(self.stderr)
