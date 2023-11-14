@@ -25,6 +25,7 @@ class ClangTidyCmd(StaticAnalyzerCmd):
             # Warnings generated aren't important.
             self.stderr = re.sub(rb"[\d,]+ warning \S+\s+", b"", self.stderr)
             if len(self.stderr) > 0 and "--fix-errors" in self.args:
+                print(self.stderr)
                 self.returncode = 1
             self.exit_on_error()
 
